@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vps</title>
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+    
+
+    <!-- font awesome cdn link  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- custom css file link  -->
+    <link rel="stylesheet" type="text/css" href="C:\Users\mstul\OneDrive\Documents\GitHub\New folder\templates\style.css">
+
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon_io/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon_io/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon_io/favicon-16x16.png">
+<link rel="manifest" href="favicon_io/site.webmanifest">
+
+</head>
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap');
+
+:root{
+    --green:#27ae60;
+    --dark-color:#219150;
+    --black:#444;
+    --light-color:#666;
+    --border:.1rem solid rgba(0,0,0,.1);
+    --border-hover:.1rem solid var(--black);
+    --box-shadow:0 .5rem 1rem rgba(0,0,0,.1);
+}
+
+*{
+    font-family: 'Poppins', sans-serif;
+    margin:0; padding:0;
+    box-sizing: border-box;
+    outline: none; border:none;
+    text-decoration: none;
+    text-transform: capitalize;
+    transition:all .2s linear;
+}
+
+html{
+    font-size: 62.5%;
+    overflow-x: hidden;
+    scroll-padding-top: 5rem;
+    scroll-behavior: smooth;
+}
+
+html::-webkit-scrollbar{
+    width:1rem;
+}
+
+html::-webkit-scrollbar-track{
+    background:transparent;
+}
+
+html::-webkit-scrollbar-thumb{
+    background:var(--black);
+}
+
+section{
+    padding:5rem 9%;
+}
+
+.heading{
+    text-align: center;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.heading::before{
+    content: '';
+    position: absolute;
+    top:50%; left:0;
+    transform: translateY(-50%);
+    width: 100%;
+    height:.01rem;
+    background: rgba(0,0,0,.1);
+    z-index: -1;
+}
+
+.heading span{
+    font-size: 3rem;
+    padding:.5rem 2rem;
+    color:var(--black);
+    background: #fff;
+    border:var(--border);
+}
+
+.btn{
+    margin-top: 1rem;
+    display:inline-block;
+    padding:.9rem 3rem;
+    border-radius: .5rem;
+    color:#fff;
+    background:var(--green);
+    font-size: 1.7rem;
+    cursor: pointer;
+    font-weight: 500;
+}
+
+.btn:hover{
+    background:var(--dark-color);
+}
+
+.header .header-1{
+    background:#fff;
+    padding:1.5rem 9%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header .header-1 .logo{
+    font-size: 2.5rem;
+    font-weight: bolder;
+    color:var(--black);
+}
+
+.header .header-1 .logo i{
+    color:var(--green);
+}
+
+.header .header-1 .search-form{
+    width:50rem;
+    height:5rem;
+    border:var(--border);
+    overflow: hidden;
+    background:#fff;
+    display:flex;
+    align-items: center;
+    border-radius: .5rem;
+}
+
+.header .header-1 .search-form input{
+    font-size: 1.6rem;
+    padding:0 1.2rem;
+    height:100%;
+    width:100%;
+    text-transform: none;
+    color:var(--black);
+}
+
+.header .header-1 .search-form label{
+    font-size: 2.5rem;
+    padding-right: 1.5rem;
+    color:var(--black);
+    cursor: pointer;
+}
+
+.header .header-1 .search-form label:hover{
+    color:var(--green);
+}
+
+.header .header-1 .icons div,
+.header .header-1 .icons a{
+    font-size: 2.5rem;
+    margin-left: 1.5rem;
+    color:var(--black);
+    cursor: pointer;
+}
+
+.header .header-1 .icons div:hover,
+.header .header-1 .icons a:hover{
+    color:var(--green);
+}
+
+#search-btn{
+    display: none;
+}
+
+.header .header-2{
+    background:var(--green);
+}
+
+.header .header-2 .navbar{
+    text-align: center;
+}
+
+.header .header-2 .navbar a{
+    color:#fff;
+    display: inline-block;
+    padding:1.2rem;
+    font-size: 1.7rem;
+}
+
+.header .header-2 .navbar a:hover{
+    background:var(--dark-color);
+}
+
+.header .header-2.active{
+    position:fixed;
+    top:0; left:0; right:0;
+    z-index: 1000;
+
+}
+
+.bottom-navbar{
+    text-align: center;
+    background:var(--green);
+    position: fixed;
+    bottom:0; left:0; right:0;
+    z-index: 1000;
+    display: none;
+}
+
+.bottom-navbar a{
+    font-size: 2.5rem;
+    padding:2rem;
+    color:#fff;
+}
+
+.bottom-navbar a:hover{
+    background:var(--dark-color);
+}
+
+
+
+.home{
+    background: white ;
+    background-size: cover;
+    background-position: center;
+}
+
+.home .row{
+    display:flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap:1.5rem;
+}
+
+.home .row .content{
+    flex:1 1 42rem;
+}
+
+
+.home .row .content h3{
+    color:var(--black);
+    font-size: 4.5rem;
+}
+
+.home .row .content p{
+    color:var(--light-color);
+    font-size: 1.4rem;
+    line-height: 2;
+    padding:1rem 0;
+}
+
+
+
+.icons-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    gap: 1.5rem;
+}
+
+.icons-container .icons {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 2rem 0;
+}
+
+.icons-container .icons i {
+    font-size: 18px; /* Increase icon size */
+    color: var(--green);
+}
+
+.icons-container .icons h3 {
+    font-size:18px; /* Increase heading size */
+    color: var(--black);
+    padding-bottom: .5rem;
+}
+
+.icons-container .icons p {
+    font-size: 2rem; /* Increase paragraph size */
+    color: var(--light-color);
+}
+
+.features-container {
+    white-space: nowrap; /* Prevents features from wrapping */
+    overflow: hidden; /* Hides the overflow */
+}
+.features-container .feature .content {
+    font-size: 18px; /* Adjust the font size as needed */
+}
+
+.feature {
+    display: inline-block; /* Display features in a single line */
+    margin-right: 20px; /* Add some space between features */
+}
+
+.swiper-button-next,
+.swiper-button-prev{
+    border:var(--border-hover);
+    height:4rem;
+    width:4rem;
+    color:var(--black);
+    background: #fff;
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after{
+    font-size: 2rem;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover{
+    background: var(--black);
+    color:#fff;
+}
+
+.newsletter{
+    background:black;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.newsletter form{
+    max-width: 45rem;
+    margin-left: auto;
+    text-align: center;
+    padding:5rem 0;
+}
+
+.newsletter form h3{
+    font-size: 2.2rem;
+    color:#fff;
+    padding-bottom: .7rem;
+    font-weight: normal;
+}
+
+.newsletter form .box{
+    width: 100%;
+    margin: .7rem 0;
+    padding:1rem 1.2rem;
+    font-size: 1.6rem;
+    color:var(--black);
+    border-radius: .5rem;
+    text-transform: none;
+}
+
+
+.developer-card {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.developer-card .card {
+    flex: 1;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 0 10px;
+    max-width: 300px;
+    text-align: center;
+}
+
+.developer-card .card img {
+    width: 100px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+
+
+
+#about-us {
+            margin-top: 2000px; /* To create a long scrollable page */
+        }
+
+
+
+.footer .box-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+    gap:1.5rem;
+}
+
+.footer .box-container .box h3{
+    font-size: 2.2rem;
+    color:var(--black);
+    padding:1rem 0;
+}
+
+.footer .box-container .box a{
+    display: block;
+    font-size: 1.4rem;
+    color:var(--light-color);
+    padding:1rem 0;
+}
+
+.footer .box-container .box a i{
+    color:var(--green);
+    padding-right: .5rem;
+}
+
+.footer .box-container .box a:hover i{
+    padding-right: 2rem;
+}
+
+.footer .box-container .box .map{
+    width:100%;
+}
+
+.footer .share{
+    padding:1rem 0;
+    text-align: center;
+}
+
+.footer .share a{
+    height: 5rem;
+    width: 5rem;
+    line-height: 5rem;
+    font-size: 2rem;
+    color:#fff;
+    background:var(--green);
+    margin:0 .3rem;
+    border-radius: 50%;
+}
+
+.footer .share a:hover{
+    background:var(--black);
+}
+
+.footer .credit{
+    border-top: var(--border);
+    margin-top: 2rem;
+    padding:0 1rem;
+    padding-top: 2.5rem;
+    font-size: 2rem;
+    color:var(--light-color);
+    text-align: center;
+}
+
+.footer .credit span{
+    color:var(--green);
+}
+
+.loader-container{
+    position: fixed;
+    top:0; left: 0;
+    height:100%;
+    width: 100%;
+    z-index: 10000;
+    background:#f7f7f7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loader-container.active{
+    display: none;
+}
+
+.loader-container img{
+    height:10rem;
+}
+
+
+
+
+
+
+
+
+
+
+/* media queries  */
+
+@media (max-width:991px){
+
+    html{
+        font-size: 55%;
+    }
+
+    .header .header-1{
+        padding:2rem;
+    }
+
+    section{
+        padding:3rem 2rem;
+    }
+
+}
+
+@media (max-width:768px){
+
+    html{
+        scroll-padding-top: 0;
+    }
+
+    body{
+        padding-bottom: 6rem;
+    }
+
+    .header .header-2{
+        display:none;
+    }
+
+    .bottom-navbar{
+        display: block;
+    }
+
+    #search-btn{
+        display: inline-block;
+    }
+
+    .header .header-1{
+        box-shadow: var(--box-shadow);
+        position: relative;
+    }
+
+    .header .header-1 .search-form{
+        position:absolute;
+        top:-115%; right:2rem;
+        width: 90%;
+        box-shadow: var(--box-shadow);
+    }
+
+    .header .header-1 .search-form.active{
+        top:115%;
+    }
+
+    .home .row .content{
+        text-align: center;
+    }
+
+    .home .row .content h3{
+        font-size: 3.5rem;
+    }
+
+    .newsletter{
+        background-position: right;
+    }
+
+    .newsletter form{
+        margin-left:0;
+        max-width: 100%;
+    }
+
+}
+
+@media (max-width:450px){
+
+    html{
+        font-size: 50%;
+    }
+
+}
+</style>
+
+
+
+<body>
+
+<!-- header section starts  -->
+
+<header class="header">
+    <div class="header-1">
+
+        <a href="#index.html" class="logo"> <i class="fas fa-book"></i> LOGO </a>
+
+
+
+        <div class="icons">
+            <a href="/login_register" class="fas fa-user"></a>
+        </div>
+    </div>
+
+    <div class="header-2">
+        <nav class="navbar">
+
+            <a href="index.html">Home</a>
+            <a href="#about">About Us</a>
+            <a href="/feedback">Feedback</a>
+        </nav>
+    </div>
+
+</header>
+
+
+
+<section class="home" id="home">
+    <div class="row">
+        <div class="content">
+            <h3>HeyThere!</h3>
+            <p> Get the best price for your book.</p>
+            <a  href="/base"class="btn">GET THE PRICE</a>
+</section>
+<!-- home section ends -->
+
+
+
+<!-- home section ense  -->
+
+<!-- icons section starts  -->
+
+<section class="features-container">
+
+    <div class="feature">
+        <i class="fas fa-chart-line"></i>
+        <div class="content">
+            <h3>Smart Pricing Algorithms</h3>
+        </div>
+    </div>
+
+    <div class="feature">
+        <i class="fas fa-balance-scale"></i>
+        <div class="content">
+            <h3>Competitive Comparison</h3>
+        </div>
+    </div>
+
+    <div class="feature">
+        <i class="fas fa-comments-dollar"></i>
+        <div class="content">
+            <h3>Negotiation Tools</h3>
+        </div>
+    </div>
+
+
+
+    <div class="feature">
+        <i class="fas fa-chart-bar"></i>
+        <div class="content">
+            <h3>Seller Analytics</h3>
+        </div>
+    </div>
+
+    <div class="feature">
+        <i class="fas fa-users-cog"></i>
+        <div class="content">
+            <h3>Expert Guidance</h3>
+        </div>
+    </div>
+
+
+
+</section>
+
+
+
+<!-- icons section ends -->
+
+
+
+<!-- featured section ends -->
+
+
+<!-- About Us section starts -->
+<section class="about">
+<div class="container">
+    <h2>About Us</h2>
+   <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt
+     ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco 
+     laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+      velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+     non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+   </p> 
+
+    <!-- Developer Cards -->
+    <div class="developer-card">
+        <div class="card">
+            <img src="images\dev1.jpg" alt="Developer 1">
+            <h3>Tarun P.</h3>
+            <p>Frontend Developer</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam scelerisque mi eget risus mollis, ac semper tortor rutrum.</p>
+        </div>
+        <div class="card">
+            <img src="images\dev2.jpg" alt="Developer 2">
+            <h3>Nitash V.</h3>
+            <p>Backend Developer</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam scelerisque mi eget risus mollis, ac semper tortor rutrum.</p>
+        </div>
+    </div>
+</div>
+</section>
+
+
+<!-- newsletter section starts -->
+
+<section class="newsletter">
+
+    <form action="">
+        <h3>subscribe for latest updates</h3>
+        <input type="email" name="" placeholder="enter your email" id="" class="box">
+        <input type="submit" value="subscribe" class="btn">
+    </form>
+
+</section>
+
+<!-- newsletter section ends -->
+
+
+<!-- feedback section starts  -->
+
+<section class="blogs" id="blogs">
+
+    <h1 class="heading"> <span>feedback</span> </h1>
+
+    <section class="newsletter">
+
+        <form action="">
+            <h3>give your feedback here...</h3>
+            <a href="/feedback" class="btn">Feedback</a>
+            <!-- <a href="./feedback.html"><input type="submit" value="feedback"> -->
+            </a>
+        </form>
+
+    </section>
+</section>
+
+<!-- feedback section ends -->
+
+<!-- footer section starts  -->
+
+<section class="footer">
+
+    <div class="box-container">
+
+
+
+        <div class="box">
+            <h3>quick links</h3>
+            <a href="#index.html"> <i class="fas fa-arrow-right"></i> Home </a>
+            <a href="#about"> <i class="fas fa-arrow-right"></i> About Us </a>
+            <a href="/feedback"> <i class="fas fa-arrow-right"></i> Feedback </a>
+        </div>
+
+        <div class="box">
+            <h3>extra links</h3>
+            <a href="#"> <i class="fas fa-arrow-right"></i> privacy policy </a>
+            <a href="#"> <i class="fas fa-arrow-right"></i> our serivces </a>
+        </div>
+
+        <div class="box">
+            <h3>contact info</h3>
+            <a href="#"> <i class="fas fa-phone"></i>000000000 </a>
+            <a href="#"> <i class="fas fa-phone"></i> 0000000000 </a>
+            <a href="#"> <i class="fas fa-envelope"></i> random1038@gmail.com </a>
+            <a href="#"> <i class="fas fa-envelope"></i> random56788106@gmail.com </a>
+            <img src="images/worldmap.png" class="map" alt="">
+        </div>
+
+    </div>
+
+    <div class="share">
+        <a href="#" class="fab fa-facebook-f"></a>
+        <a href="https://twitter.com" class="fab fa-twitter"></a>
+        <a href="https://www.instagram.com/" class="fab fa-instagram"></a>
+        <a href="https://www.linkedin.com/" class="fab fa-linkedin"></a>
+    </div>
+
+    
+
+</section>
+
+<!-- footer section ends -->
+
+
+
+
+
+
+<!-- custom js file link  -->
+<script src="script.js"></script>
+
+</body>
+</html>
