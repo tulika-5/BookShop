@@ -3,28 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Base Page</title>
+    <title>Predict Selling Price</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="number"],
+        button {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-top: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        .result-box {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .predicted-price {
+            color: #007bff;
+            font-weight: bold;
+        }
+    </style>
+    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 
 <body>
-    <h1>Welcome to the Base Page</h1>
-    <div id="prediction-result"></div>
-    <form id="prediction-form">
-        <label for="price">Price:</label>
-        <input type="number" id="price" name="price" required><br><br>
-
-        <label for="year_old">Year Old:</label>
-        <input type="number" id="year_old" name="year_old" required><br><br>
-
-        <label for="availability">Availability:</label>
-        <input type="number" id="availability" name="availability" required><br><br>
-
-        <label for="stars">Stars:</label>
-        <input type="number" id="stars" name="stars" required><br><br>
-
-        <button type="submit" id="predict-button">Predict</button>
-    </form>
+    <div class="container">
+        <h1>Predict Selling Price</h1>
+        <div id="prediction-result" class="result-box"></div>
+        <form id="prediction-form" class="prediction-form">
+            <div class="form-group">
+                <label for="price">Price:</label>
+                <input type="number" id="price" name="price" required>
+            </div>
+            <div class="form-group">
+                <label for="year_old">Year Old:</label>
+                <input type="number" id="year_old" name="year_old" required>
+            </div>
+            <div class="form-group">
+                <label for="availability">Availability:</label>
+                <input type="number" id="availability" name="availability" required>
+            </div>
+            <div class="form-group">
+                <label for="stars">Stars:</label>
+                <input type="number" id="stars" name="stars" required>
+            </div>
+            <button type="submit" id="predict-button">Predict</button>
+        </form>
+    </div>
 
     <script>
         $(document).ready(function(){
@@ -37,7 +107,7 @@
                     url: '/predict',
                     data: $('#prediction-form').serialize(), // Serialize form data
                     success: function(response){
-                        $('#prediction-result').html('<p>Predicted Selling Price: ' + response.predicted_price + '</p>');
+                        $('#prediction-result').html('<p class="predicted-price">Predicted Selling Price: $' + response.predicted_price + '</p>');
                     }
                 });
             });

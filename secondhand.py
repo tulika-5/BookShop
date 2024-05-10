@@ -41,4 +41,13 @@ r2 = r2_score(y_test, y_pred)
 
 
 
+# Visualizing the Decision Tree 
+from sklearn.tree import plot_tree
+import matplotlib.pyplot as plt
+
+
+
+plt.figure(figsize=(20,10))
+plot_tree(model, feature_names=list(X.columns), filled=True)
+plt.show()
 
